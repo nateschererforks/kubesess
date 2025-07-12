@@ -37,6 +37,12 @@ jobs:
         - os: macos-13
           rust: stable
           target: aarch64-apple-darwin
+        - os: windows-2025
+          rust: stable
+          target: x86_64-pc-windows-msvc
+        - os: windows-2025
+          rust: stable
+          target: aarch64-pc-windows-msvc
     steps:
       - uses: actions/checkout@v3
         with:
@@ -70,7 +76,7 @@ jobs:
         run: |
            echo LATEST_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1)) >> $GITHUB_ENV
 
-      - name: Package 
+      - name: Package
         if: github.event_name == 'release'
         run: |
           make bundle_release TARGET=${{ matrix.target }}
