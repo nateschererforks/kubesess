@@ -1,6 +1,9 @@
 on:
   workflow_call:
 
+permissions:
+  contents: write
+
 name: "[reusable] package and release"
 jobs:
   build:
